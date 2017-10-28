@@ -11,8 +11,12 @@
             $('#run').click(
                 function(){
                     let times = Number($('#times').val());
+                    let max = 0, min = 999;
 
                     $('#results').text("");
+                    $('#min').text("---");
+                    $('#max').text("---");
+
                     $('#ans').text("計算中...");
 
                     setTimeout(function() {
@@ -24,9 +28,16 @@
                             totalGirls = totalGirls + numGirls;
                             $( "#results" ).append('<div class="col-sm-2">第' + i + "次需要"+ numGirls +"個女生   </div>" );
 
+                            if(numGirls > max)
+                                max = numGirls;
+
+                            if(numGirls < min)
+                                min = numGirls;
                         }
 
                         $('#ans').text( totalGirls / times + "個女生在班上能每天借到姨媽巾" );
+                        $('#min').text( min + "個女生");
+                        $('#max').text( max + "個女生");
                     }, 1);
 
                 }
@@ -77,6 +88,7 @@
         跑<input type="number" id="times" value="5000"/>次
         <button id="run">Go</button>
         一個月中平均需要: <span id="ans"></span>
+        <br> 最大值: <span id="max">---</span> 最小值: <span id="min">---</span>
         <br> <span style="font-size: 1rem">Inspired by my buddy, Ghoulfish</span>
     </div>
     <div id="results">
