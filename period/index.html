@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>算多少個女生借到姨媽巾</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $( document ).ready(function(){
+            let times = Number($('#times').val());
+
+
+            $('#run').click(
+                function(){
+                    $('#results').text("");
+                    $('#ans').text("計算中...");
+
+                    setTimeout(function() {
+                        let totalGirls = 0;
+
+                        for(let i=1; i<times+1; i++){
+
+                            let numGirls = getNumGirls();
+                            totalGirls = totalGirls + numGirls;
+                            $( "#results" ).append('<div class="col-sm-2">第' + i + "次需要"+ numGirls +"個女生   </div>" );
+
+                            $('#ans').text( totalGirls / 1000 + "個女生" );
+                        }
+                    }, 1);
+                }
+            );
+
+            function getNumGirls(){
+
+                let dateArray = [];
+                let numGirls = 0;
+
+                while(dateArray.length < 28){
+
+                    numGirls++;
+
+                    let startPeriodDate = getRandomInt(1, 28);
+
+                    for(let i=0; i<7; i++){
+
+                        let periodDate = startPeriodDate + i;
+
+                        if(periodDate > 28){
+                            break;
+                        }
+
+                        if(dateArray.indexOf(periodDate) === -1){
+                            dateArray.push(periodDate);
+                        }
+
+                        if(dateArray.length >= 28){
+                            break;
+                        }
+                    }
+                }
+
+                console.log(dateArray.sort(function(a,b){return a-b}));
+
+                return numGirls;
+            }
+
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+        });
+    </script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div>
+        跑<input type="number" id="times" value="5000"/>次
+        <button id="run">Go</button>
+        平均需要:<span id="ans"></span>
+    </div>
+    <div id="results">
+
+    </div>
+</body>
+</html>
