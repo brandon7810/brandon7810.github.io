@@ -7,11 +7,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         $( document ).ready(function(){
-            let times = Number($('#times').val());
-
 
             $('#run').click(
                 function(){
+                    let times = Number($('#times').val());
+
                     $('#results').text("");
                     $('#ans').text("計算中...");
 
@@ -24,7 +24,7 @@
                             totalGirls = totalGirls + numGirls;
                             $( "#results" ).append('<div class="col-sm-2">第' + i + "次需要"+ numGirls +"個女生   </div>" );
 
-                            $('#ans').text( totalGirls / 1000 + "個女生" );
+                            $('#ans').text( totalGirls / times + "個女生在班上能保證每天借到姨媽巾" );
                         }
                     }, 1);
                 }
@@ -59,8 +59,6 @@
                     }
                 }
 
-                console.log(dateArray.sort(function(a,b){return a-b}));
-
                 return numGirls;
             }
 
@@ -76,7 +74,7 @@
     <div>
         跑<input type="number" id="times" value="5000"/>次
         <button id="run">Go</button>
-        平均需要:<span id="ans"></span>
+        平均需要: <span id="ans"></span>
     </div>
     <div id="results">
 
