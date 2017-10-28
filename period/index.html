@@ -23,10 +23,12 @@
                             let numGirls = getNumGirls();
                             totalGirls = totalGirls + numGirls;
                             $( "#results" ).append('<div class="col-sm-2">第' + i + "次需要"+ numGirls +"個女生   </div>" );
+
                         }
+
+                        $('#ans').text( totalGirls / times + "個女生在班上能保證每天借到姨媽巾" );
                     }, 1);
 
-                    $('#ans').text( totalGirls / times + "個女生在班上能保證每天借到姨媽巾" );
                 }
             );
 
